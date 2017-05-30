@@ -71,6 +71,9 @@ function file_entity_inline_field_widget_process($element, &$form_state, &$form)
     }
   }
 
+  // Handle IEF if possible
+  $element['#ief_element_submit'][] = 'file_entity_inline_submit';
+
   // Add a submit handler to the entire form to handle saving of values.
   if (array_search('file_entity_inline_submit', $form['#submit']) === FALSE) {
     $form['#submit'][] = 'file_entity_inline_submit';
@@ -99,7 +102,6 @@ function file_entity_inline_submit($form, &$form_state) {
     file_save($file);
   }
 }
-
 
 /**
  * Implements hook_form_alter().
